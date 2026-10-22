@@ -1,0 +1,12 @@
+{{ define "main" }}
+<article>
+  <h1>{{ .Title }}</h1>
+  <p class="meta">{{ partial "meta.html" . }}</p>
+  {{ .Content }}
+  {{- with .Params.links }}
+  <ul class="links">
+    {{- range . }}<li><a href="{{ . }}">{{ . }}</a></li>{{ end }}
+  </ul>
+  {{- end }}
+</article>
+{{ end }}

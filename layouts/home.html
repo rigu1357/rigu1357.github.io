@@ -1,0 +1,20 @@
+{{ define "main" }}
+<section class="bio">{{ .Content }}</section>
+
+{{- with where site.RegularPages "Params.ongoing" true }}
+<h2>Currently</h2>
+<ul class="plain">
+  {{- range .ByDate.Reverse }}
+  <li><a href="{{ .RelPermalink }}">{{ .Title }}</a>{{ with .Params.org }} <span class="muted">· {{ . }}</span>{{ end }}</li>
+  {{- end }}
+</ul>
+{{- end }}
+
+{{- with where site.RegularPages "Section" "news" }}
+<h2>Recent news</h2>
+<ul class="news">
+  {{- range first 5 .ByDate.Reverse }}{{ partial "news-item.html" . }}{{ end }}
+</ul>
+<p><a href="{{ "news/" | relURL }}">All news →</a></p>
+{{- end }}
+{{ end }}

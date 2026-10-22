@@ -1,0 +1,5 @@
+<li>
+  <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "Jan 2006" }}</time>
+  {{ with .Params.link }}<a href="{{ . | relURL }}">{{ $.Title }}</a>{{ else }}{{ .Title }}{{ end }}
+  {{- with .Content }}<div class="muted">{{ . }}</div>{{ end }}
+</li>
